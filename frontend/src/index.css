@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #090c19;
+  --bg-deep: #120f24;
+  --text-primary: #edf1ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(circle at 10% 15%, rgba(74, 198, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 5%, rgba(255, 122, 140, 0.16), transparent 32%),
+    linear-gradient(160deg, var(--bg-base) 0%, var(--bg-deep) 100%);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100vh;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+/* Glowing box styles */
+@layer components {
+  .glass-box {
+    @apply rounded-lg border backdrop-blur-md bg-gradient-to-br overflow-hidden relative;
+  }
+
+  .glass-box-inner {
+    @apply absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none rounded-lg;
+  }
+
+  .box-glow {
+    @apply shadow-[0_0_40px_rgba(34,211,238,0.2)] hover:shadow-[0_0_60px_rgba(34,211,238,0.3)] transition-shadow duration-300;
+  }
+
+  .box-glow-cyan {
+    @apply shadow-[0_0_50px_rgba(34,211,238,0.25)] hover:shadow-[0_0_70px_rgba(34,211,238,0.35)] transition-shadow duration-300;
+  }
+
+  .box-glow-amber {
+    @apply shadow-[0_0_50px_rgba(255,184,77,0.25)] hover:shadow-[0_0_70px_rgba(255,184,77,0.35)] transition-shadow duration-300;
+  }
+
+  .box-glow-emerald {
+    @apply shadow-[0_0_50px_rgba(52,211,153,0.25)] hover:shadow-[0_0_70px_rgba(52,211,153,0.35)] transition-shadow duration-300;
+  }
+
+  .ai-border-glow {
+    @apply border border-cyan-500/50 shadow-[inset_0_0_20px_rgba(34,211,238,0.1)];
+  }
+
+  .ai-border-gradient {
+    @apply bg-gradient-to-br from-cyan-950/30 via-slate-950/40 to-purple-950/20;
+  }
+}
