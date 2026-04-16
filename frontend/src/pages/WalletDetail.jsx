@@ -29,7 +29,7 @@ export default function WalletDetail() {
   }
 
   useEffect(() => {
-    axios.get(`/api/wallet/${encodeURIComponent(id)}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/wallet/${id}`)
       .then(r => setData(r.data))
       .catch(() => setError('Could not fetch wallet data. Make sure the backend is running and your ETHERSCAN_API_KEY is set in backend/.env'))
       .finally(() => setLoading(false))
