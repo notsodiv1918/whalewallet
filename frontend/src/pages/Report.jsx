@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import jsPDF from 'jspdf'
+import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
 import { PageLayout } from '../components/PageLayout'
 
