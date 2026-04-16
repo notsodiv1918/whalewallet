@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from .etherscan import get_wallet_transactions, get_wallet_balance
-from analysis import analyze_wallet, analyze_event_behavior, calculate_suspicion_score
+from .analysis import analyze_wallet, analyze_event_behavior, calculate_suspicion_score
 import uvicorn
 from collections import deque
 import json
