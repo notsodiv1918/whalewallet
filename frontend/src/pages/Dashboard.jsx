@@ -5,8 +5,6 @@ import WalletCard from '../components/WalletCard'
 import TransactionDetail from '../components/TransactionDetail'
 import { PageLayout } from '../components/PageLayout'
 
-const API = import.meta.env.VITE_API_URL || ''
-
 const FALLBACK_WALLETS = [
   { id: 'vitalik', address: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045', name: 'Vitalik Buterin', balance_eth: 0 },
   { id: 'wintermute', address: '0x28C6c06298d514Db089934071355E5743bf21d60', name: 'Wintermute Trading', balance_eth: 0 },
@@ -43,7 +41,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     let alive = true
-    axios.get(`${API}/api/wallets?min_balance_eth=0.05&min_non_zero_wallets=100&max_wallets=100`, { timeout: 25000 })
+    axios.get('/api/wallets?min_balance_eth=0.05&min_non_zero_wallets=100&max_wallets=100', { timeout: 25000 })
       .then(r => {
         if (!alive) return
         const list = Array.isArray(r.data?.wallets) ? r.data.wallets.filter(w => w?.id && w?.address) : []
@@ -61,7 +59,7 @@ export default function Dashboard() {
   useEffect(() => {
     let alive = true
     const load = () => {
-      axios.get(`${API}/api/dashboard/intel`)
+      axios.get('/api/dashboard/intel')
         .then(r => {
           if (!alive) return
           const d = r.data || {}
@@ -90,7 +88,7 @@ export default function Dashboard() {
     if (attemptedSearches.current.has(norm)) return
     attemptedSearches.current.add(norm)
     setSearchStatus('Fetching wallet...')
-    axios.get(`${API}/api/wallet/${query}`, { timeout: 25000 })
+    axios.get(`/api/wallet/${query}`, { timeout: 25000 })
       .then(r => {
         const d = r.data || {}
         if (!d.address) {
@@ -142,7 +140,7 @@ export default function Dashboard() {
 
     Promise.all(
       topWallets.map(wallet =>
-        axios.get(`${API}/api/wallet/${wallet.id}?tx_limit=80`, { timeout: 20000 })
+        axios.get(`/api/wallet/${wallet.id}?tx_limit=80`, { timeout: 20000 })
           .then(r => {
             const txs = r.data.transactions || []
             return txs.map(tx => ({
