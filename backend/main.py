@@ -13,12 +13,11 @@ app = FastAPI(title="Whale Tracker API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Load wallets from JSON file
 WALLETS_FILE = os.path.join(os.path.dirname(__file__), 'wallets.json')
 MAX_INTEL_WALLETS = int(os.getenv('MAX_INTEL_WALLETS', '60'))
